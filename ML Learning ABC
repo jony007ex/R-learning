@@ -1,0 +1,80 @@
+> setwd("C:/users/Md. Mazharul Islam/Documents/datasets/titanic/mltraining-master/ML-workbook")
+> train <- read.csv("C:/users/Md. Mazharul Islam/Documents/datasets/titanic/mltraining-master/ML-workbook/train.csv")
+> test <- read.csv("C:/users/Md. Mazharul Islam/Documents/datasets/titanic/mltraining-master/ML-workbook/test.csv")
+#Column name change one by one
+colnames(data)[colnames(data)=="old_name"] <- "new_name"
+
+#Column name change at a time by using (library package: data.table)
+setnames(data, old=c("old_name","another_old_name"), new=c("new_name", "another_new_name"))
+
+#remove column in r by name 
+dataframe$columetoremove <- NULL 
+
+# delete column in R by mapping Null value to them
+dataset$firstcol <- dataset$nextcol <- dataset$anothercol <- NULL
+
+#rename of all data of a particular column
+data$state <- gsub("old cell info", "new info", data$state)
+
+#export data in excel install package library(xlsx)
+write.xlsx(mydata, "c:/mydata.xlsx")
+
+#export install.packages("writexl")
+write.xlsx(daily, "daily.xlsx")
+
+write.table(raw, "d:/raw.xlsx")
+
+#Copy Column 
+
+df$Rate2 <- df$Rate
+
+#reorder Column
+
+raw <- raw[c("Date", "Time", "Branch Id","Branch","User ID","User Name","Status","Option","Option Name")]
+
+#export as CSV
+write.csv(raw, file="raw.csv")
+
+#Time Conversion
+
+raw$Time<-format(strptime(raw$Time, format="%H%M%OS"), format = "%H:%M:%OS")
+
+#Date Conversion
+
+data[ , 1 ] <- ymd(data[, 1])
+
+#Remove digit from a column (working)
+
+raw$Date <- substring(raw$Date, 2)
+
+#Remove digit from a column (Install package Stringi) on the console
+stri_sub(x,2)
+#Or, Remove 1st digit from a column on the console
+sub('.', '', raw$Date)
+
+#Add digit before number (need to add one by one) 0 will be added and total digit will be 7.
+
+raw$Date <- str_pad(raw$Date, 7, pad = "0")
+
+#add hyphen in the date to separate YY/MM/DD.
+
+raw$Date <- str_replace(raw$Date,"(\\d{4})(\\d{2})(\\d{2})$","\\1-\\2-\\3")
+
+#Convert Character into proper date (for microsoft)
+
+raw$Date<-as.Date(raw$Date, origin = "1904-01-01")
+
+#Remove hyphen in the date and show YYMMDD
+
+as.character(as.Date(raw$Date, "%m/%d/%Y"), "%Y%m%d")
+
+#Convert date in different format in console & file
+
+as.character(as.Date(raw$Date, "%d%m%Y"), "%d-%m-%Y")
+
+raw$Date <-as.character(as.Date(raw$Date, "%d%m%Y"), "%d-%m-%Y")
+
+#table in graphical format
+barplot(table(train$Age),names.arg=c("A","B","C","D","E","F","G"), main = "ages(passenger traveling class)",xlab = "Ages",ylab = "Year", col = "green",horiz = TRUE, border = "red", density=c(90, 70, 50, 40, 30, 20, 10))
+
+#format table monthwise
