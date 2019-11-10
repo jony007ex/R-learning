@@ -32,12 +32,22 @@ df$Rate2 <- df$Rate
 
 raw <- raw[c("Date", "Time", "Branch Id","Branch","User ID","User Name","Status","Option","Option Name")]
 
+#reorder column/delete the column
+
+raw <- subset(raw, select = c(1,2,3,4,5,6,7,8,9))
+
 #export as CSV
 write.csv(raw, file="raw.csv")
 
 #Time Conversion
 
 raw$Time<-format(strptime(raw$Time, format="%H%M%OS"), format = "%H:%M:%OS")
+
+#Segregate time from date and add column
+
+Time1 <- format(raw$Time, format = "%H:%M:%S")
+
+raw$Date1 <- Time1
 
 #Date Conversion
 
@@ -78,3 +88,8 @@ raw$Date <-as.character(as.Date(raw$Date, "%d%m%Y"), "%d-%m-%Y")
 barplot(table(train$Age),names.arg=c("A","B","C","D","E","F","G"), main = "ages(passenger traveling class)",xlab = "Ages",ylab = "Year", col = "green",horiz = TRUE, border = "red", density=c(90, 70, 50, 40, 30, 20, 10))
 
 #format table monthwise
+
+
+#Add to data file in one (here datafile is the new file)
+
+datafile <- rbind(raw1,raw2)
