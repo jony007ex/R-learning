@@ -1,0 +1,7 @@
+#########################
+# Decision Tree         #
+#########################
+
+Prepare Decision Tree with single date (Install Package, rattle, rpart.plot, RColorBrewer, rpart)
+> mytree3<-rpart(Survived~Age,data=train,method = "class")
+> fancyRpartPlot(mytree3)
